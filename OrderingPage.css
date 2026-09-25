@@ -1,0 +1,633 @@
+/* Styles the Palm Breeze Cafe food ordering page. */
+/* Enables smooth scrolling to menu categories. */
+html{
+    scroll-behavior: smooth;
+}
+/* Resets default spacing and applies the base font. */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+/* Establishes the page background and text color. */
+body{
+    background:#FDF8F2;
+    color:#333;
+}
+/* Styles the ordering header, navigation, and cart trigger. */
+header{
+    width:100%;
+    height:90px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 80px;
+    gap:20px;
+    background:white;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:0.05em;
+    color:#457575;
+}
+.logo img{
+    height:58px;
+    width:auto;
+    display:block;
+}
+.headerActions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-left:auto;
+}
+.homeBtn{
+    text-decoration:none;
+    color:white;
+    background:#F4B942;
+    padding:12px 25px;
+    border-radius:30px;
+    transition: 4s;
+}
+.homeBtn:hover{
+    background:#E8A317;
+}
+/* Positions and styles the slide-out shopping cart. */
+.cart{
+    position: fixed;
+    top:0;
+    right: -100%;
+    width: 360px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    padding: 65px 20px 40px;
+    z-index: 11000;
+    overflow: auto;
+    transition: 0.5s;
+}
+.cart.active{
+    right: 0;
+}
+.cartTitle{
+    text-align: center;
+    font-size: 30px;
+}
+.cartBox{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.cartBox img{
+    width: 84px;
+    height: 84px;
+    border-radius: 6px;
+    object-fit: contain;
+    margin-right: 16px;
+    padding: 4px;
+    background: #ffffff;
+}
+.cartDetail{
+    display: grid;
+    gap: 8px;
+    margin-right: auto;
+}
+.cartFoodTitle{
+    font-size: 16px;
+    line-height: 1;
+}
+.cartPrice{
+    font-weight: 500;
+}
+.cartQuantity{
+    display: flex;
+    width: 100px;
+    border: 1px solid #999;
+    border-radius: 6px;
+}
+.cartQuantity button{
+    background: transparent;
+    width: 30px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+.cartQuantity #decrement{
+    color: #999;
+}
+.cartQuantity .number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    cursor: default;
+}
+.cartRemove{
+    font-size: 25px;
+    cursor: pointer;
+}
+.total{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid #333;
+    margin-top: 20px;
+    font-size: 18px;
+}
+.totalPrice{
+    margin-left: 10px;
+    font-weight: 600;
+}
+.btnBuy{
+    display: block;
+    padding: 10px 30px;
+    background: #e35f26;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #fff;
+    margin: 20px auto 0;
+    cursor: pointer;
+}
+#cartClose{
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    font-size: 35px;
+    cursor: pointer;
+}
+#cart-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    text-decoration:none;
+    box-shadow:0 6px 16px rgba(0,0,0,.15);
+    transition:.3s;
+    font-size:20px;
+    position:fixed;
+    top:15px;
+    right:24px;
+    z-index:1100;
+}
+#cart-icon:hover{
+    background:#E8A317;
+    transform:translateY(-2px);
+}
+#cart-icon .cartItemCount{
+    position: absolute;
+    top:0px;
+    right:-6px;
+    width:20px;
+    height:20px;
+    background: #e35f26;
+    border-radius: 50%;
+    font-size:12px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+
+}
+/* Displays temporary feedback after cart updates. */
+#cart-notification {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translate(-50%, -12px);
+    background-color: #214139;
+    color: #fff;
+    padding: 13px 22px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 700;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 12000;
+}
+#cart-notification.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+.quantityModal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 12000;
+}
+.quantityModal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.quantityModalContent {
+    background: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    width: min(90%, 360px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.quantityModalContent h3 {
+    margin-bottom: 8px;
+    color: #457575;
+}
+#quantityModalImage {
+    width: 60%;
+    max-height: 110px;
+    object-fit: contain;
+    border-radius: 10px;
+    margin: 8px auto 12px;
+    display: block;
+}
+#quantityModalItem {
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #333;
+}
+.quantitySelector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 18px 0;
+}
+.quantitySelector button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #f4b942;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+#quantityValue {
+    min-width: 28px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.quantityModalActions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+.quantityModalActions button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+.cancelQuantity {
+    background: #e0e0e0;
+    color: #333;
+}
+.confirmQuantity {
+    background: #e35f26;
+    color: #fff;
+}
+/* Styles the receipt shown after a completed order. */
+.receiptModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10000;
+}
+.receiptModal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.receiptContent {
+    position: relative; /* Added for positioning the close button */
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 350px; /* Adjusted for a proper receipt size */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-family: sans-serif;
+}
+.receiptContent h2 {
+    margin-top: 0;
+    text-align: center;
+    margin-bottom: 15px; /* Added some margin for better spacing */
+}
+.receiptItem {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+.receiptTotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin: 12px 0;
+}
+.paymentCard {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin: 24px auto 32px;
+}
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+.formGroup {
+    margin-bottom: 20px;
+    text-align: left;
+}
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+}
+select:focus {
+    border-color: #007bff;
+}
+.qrContainer {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px dashed #007bff;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+.qrTitle {
+    font-weight: bold;
+    color: #333;
+    margin-top: 0;
+}
+#paymentImage {
+    display: block;
+    margin: 15px auto;
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+}
+.instructions {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 0;
+}
+.codMessage {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e2f0d9;
+    color: #3c763d;
+    border-radius: 8px;
+    font-size: 14px;
+}
+/* Styles the menu heading and category navigation. */
+.featuredMenu{
+    width:100%;
+    padding:100px 80px 120px;
+    background: linear-gradient(180deg, #fff7ed, #fff0d8);
+    border-radius:40px;
+    box-shadow:0 20px 50px rgba(244, 185, 66, 0.12);
+}
+.featuredMenu h2{
+    font-size:38px;
+    margin-bottom:20px;
+    text-align:center;
+    color:#214139;
+    font-weight:800;
+    letter-spacing:0.04em;
+}
+.categoryNav{
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: fit-content;
+    margin: 0 auto 35px;
+    padding: 12px 20px;
+    background: #FDF8F2;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    z-index: 1000;
+}
+.categoryNav a{
+    text-decoration:none;
+    color:#444;
+    background:#ffffff;
+    padding:10px 16px;
+    border-radius:999px;
+    box-shadow:0 4px 10px rgba(0,0,0,.06);
+    transition:.3s;
+}
+.categoryNav a:hover{
+    background:#F4B942;
+    color:white;
+}
+/* Organizes each menu category into food item grids. */
+.categorySection{
+    margin-bottom:40px;
+}
+.categorySection h3{
+    font-size:24px;
+    margin-top: 75px;
+    margin-bottom:25px;
+    color:#A56C00;
+    scroll-margin-top: 75px;
+}
+.foodContainer{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:25px;
+}
+/* Styles reusable food cards and add-to-cart controls. */
+.foodCard{
+    background:rgb(255, 255, 255);
+    border-radius:20px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:470px;
+}
+.foodBox,
+.foodBox .price,
+.foodBox .addCart{
+    transition:all .25s ease;
+}
+.foodBox{
+    width:100%;
+    height:100%;
+    display:grid;
+    grid-template-columns:110px 44px;
+    grid-template-rows:auto auto 1fr auto;
+    justify-content:center;
+    gap:12px;
+    align-items:start;
+}
+.foodBox img,
+.foodBox h3,
+.foodBox p{
+    grid-column:1 / -1;
+}
+.foodBox .price{
+    font-weight:800;
+    font-size:1.15rem;
+    color:#A56C00;
+    background:#ffffff;
+    width:110px;
+    padding:10px 0;
+    border-radius:999px;
+    border:1px solid #f6c9a1;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    grid-column:1;
+    grid-row:4;
+}
+.foodBox .addCart{
+    grid-column:2;
+    grid-row:4;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:44px;
+    height:44px;
+    min-width:44px;
+    color:#ffffff;
+    background:#F4B942;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:1.1rem;
+    box-shadow:0 10px 20px rgba(244,185,66,.18);
+    margin-bottom:0;
+}
+.foodBox .addCart:hover{
+    background:#E8A317;
+    transform:translateY(-2px);
+}
+.foodCard:hover{
+    transform:translateY(-10px);
+}
+.foodCard img{
+    width:100%;
+    max-width:180px;
+    height:180px;
+    object-fit:contain;
+    object-position:center;
+    margin:0 auto 8px;
+    border-radius:20px;
+    display:block;
+    background:#ffffff;
+    padding:8px;
+}
+.foodCard h3{
+    margin-bottom:10px;
+    margin-top: 30px;
+}
+.foodCard p{
+    color:#666;
+    font-size:15px;
+    line-height:22px;
+    min-height:66px;
+    margin-bottom:15px;
+}
+.foodCard h4{
+    color:#F4B942;
+    font-size:22px;
+    margin-top:auto;
+    margin-bottom:18px;
+}
+/* Styles the menu card button interactions. */
+.foodCard button{
+    border:none;
+    background:#F4B942;
+    color:white;
+    padding:12px 30px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.3s;
+}
+.foodCard button:hover{
+    background:#E8A317;
+}
+/* Adapts ordering layouts for smaller screens. */
+@media(max-width:1200px){
+    .foodContainer{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+@media(max-width:700px){
+    header{
+        padding:20px;
+    }
+    .featuredMenu{
+        padding:40px 20px;
+    }
+    .foodContainer{
+        grid-template-columns:1fr;
+    }
+
+}
+#closeReceiptBtn {
+    position: absolute;
+    top: 10px; /* Adjusted */
+    right: 10px; /* Adjusted */
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: #5c6369;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+#closeReceiptBtn:hover {
+    color: #ffffff;
+    background: #d16d53;
+}

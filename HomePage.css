@@ -1,0 +1,577 @@
+/* Styles the Palm Breeze Cafe home page. */
+/* Resets default element spacing and sizing. */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Inter, Arial, Helvetica, sans-serif;
+}
+/* Enables smooth scrolling to navigation targets. */
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:100px;
+}
+/* Sets the global home page background and text color. */
+body{
+    background: linear-gradient(180deg, #fff5ee 0%, #ffe4b5 50%, #ffdead 100%);
+    color:#2f4f4f;
+}
+/* Styles the sticky navigation header and its links. */
+header{
+    width:100%;
+    height:90px;
+    display:flex;
+    background:white;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 80px;
+    gap:20px;
+    position:sticky;
+    top:0;
+    z-index:20;
+    box-shadow:0 18px 40px #d3d3d3;
+    backdrop-filter:blur(12px);
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:28px;
+    font-weight:800;
+    letter-spacing:0.05em;
+    color:#457575;
+}
+.logo img{
+    height:58px;
+    width:auto;
+    display:block;
+}
+nav{
+    display:flex;
+    gap:35px;
+    margin-left:auto;
+    align-items:center;
+}
+nav a{
+    text-decoration:none;
+    color:#708090;
+    transition:.25s ease;
+    font-weight:600;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    position:relative;
+}
+nav a span {
+    position:relative;
+    z-index:1;
+}
+nav a .navUnderline {
+    display:block;
+    height:2px;
+    width:0;
+    background:#daa520;
+    transition:width .25s ease;
+    margin-top:4px;
+}
+nav a:hover .navUnderline {
+    width:100%;
+}
+nav a:hover{
+    color:#daa520;
+}
+.reserveBtn{
+    text-decoration:none;
+    color:#ffffff;
+    background:linear-gradient(135deg, #ffd700 0%, #f0e68c 100%);
+    padding:16px 36px;
+    border-radius:999px;
+    transition:.25s ease;
+}
+.reserveBtn:hover{
+    transform:translateY(-2px);
+}
+/* Styles the introductory hero section and actions. */
+.home{
+    width:100%;
+    max-width:1200px;
+    min-height:85vh;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:50px 80px;
+    gap:40px;
+    margin:0 auto 60px;
+    margin-top:35px;
+    background:#ffffff;
+    border:1px solid #d3d3d3;
+    border-radius:42px;
+    box-shadow:0 30px 80px #d3d3d3;
+    backdrop-filter:blur(14px);
+}
+.homeText{
+    width:45%;
+    text-align:left;
+}
+
+.homeLogoBanner{
+    width:100%;
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-image:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.486)), url('images/BG.jpg');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    margin:0 0 20px;
+}
+
+.homeLogoBanner img{
+    height:400px;
+    width:auto;
+    display:block;
+    background:transparent;
+    margin-bottom:150px;
+}
+.homeText h1{
+    font-size:62px;
+    line-height:76px;
+    margin-bottom:20px;
+    color:#2f4f4f;
+    max-width:520px;
+}
+.heroSubtitle{
+    font-size:18px;
+    color:#b8860b;
+    margin-bottom:24px;
+    letter-spacing:0.02em;
+}
+.homeText p{
+    font-size:19px;
+    color:#708090;
+    margin-bottom:36px;
+    max-width:520px;
+}
+.homeButtons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+}
+/* Styles the page imagery and decorative image treatments. */
+.homeImage{
+    width:50%;
+    text-align:center;
+    position:relative;
+}
+.homeImageGlow{
+    position:absolute;
+    top:-20px;
+    right:-20px;
+    width:120px;
+    height:120px;
+    background:#F3B05F1F;
+    border-radius:50%;
+    filter:blur(8px);
+    z-index:0;
+}
+.homeImage img{
+    width:100%;
+    max-width:720px;
+    height:auto;
+    display:block;
+    margin:0 auto;
+    border-radius:32px;
+    box-shadow:0 30px 80px #2138361A;
+    position:relative;
+    z-index:1;
+    transition:transform .35s ease;
+}
+.homeImage img:hover{
+    transform:translateY(-6px);
+}
+.section{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto 60px;
+    padding:60px 80px;
+    background:#FFFFFFEB;
+    border-radius:34px;
+    border:1px solid #FFFFFFB8;
+    box-shadow:0 28px 70px #3B4A5919;
+    backdrop-filter:blur(14px);
+}
+.sectionHeader{
+    max-width:720px;
+    margin-bottom:42px;
+}
+.sectionBar{
+    width:60px;
+    height:4px;
+    border-radius:999px;
+    background:linear-gradient(90deg, #f3a65f, #d08a28);
+    margin:18px 0;
+}
+.sectionHeader h2{
+    font-size:36px;
+    margin-bottom:16px;
+    color:#213a31;
+}
+.sectionHeader p{
+    font-size:18px;
+    color:#5c6369;
+    line-height:1.75;
+    max-width:700px;
+}
+/* Creates responsive grids for the cafe information cards. */
+.aboutGrid,
+.menuGrid,
+.reviewGrid,
+.contactGrid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:24px;
+}
+/* Gives content cards their shared surface and hover behavior. */
+.aboutCard,
+.menuCard,
+.reviewCard,
+.contactCard{
+    background:linear-gradient(180deg, #ffffff 0%, #fff9f1 100%);
+    border-radius:32px;
+    padding:32px;
+    box-shadow:0 24px 60px #13232F14;
+    border:1px solid #F3B05F24;
+    transition:.35s ease;
+}
+.aboutCard:hover,
+.menuCard:hover,
+.reviewCard:hover,
+.contactCard:hover{
+    transform:translateY(-6px);
+    box-shadow:0 32px 72px #13232F24;
+}
+
+.foodRating{
+    margin-top:10px;
+    color:#f4b942;
+    font-size:16px;
+    font-weight:700;
+    letter-spacing:0.04em;
+}
+.aboutCard h3,
+.menuCard h3,
+.contactCard h3{
+    margin-bottom:16px;
+    color:#214139;
+}
+.cardTag{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:6px 14px;
+    margin-bottom:18px;
+    border-radius:999px;
+    background:#F3B05F24;
+    color:#b06a22;
+    font-size:13px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+}
+.aboutCard ul,
+.menuCard ul{
+    list-style:none;
+    margin:20px 0 0;
+    padding:0;
+}
+.aboutCard li,
+.menuCard li{
+    position:relative;
+    padding-left:24px;
+    margin-bottom:12px;
+    color:#5e656b;
+}
+.bulletDot{
+    display:inline-block;
+    width:8px;
+    height:8px;
+    margin-right:10px;
+    background:#f3a65f;
+    border-radius:50%;
+    vertical-align:middle;
+}
+.reviewStars{
+    color:#f3a65f;
+    margin-bottom:18px;
+    font-size:18px;
+}
+.reviewCard span{
+    display:block;
+    margin-top:18px;
+    color:#7c6b3c;
+    font-weight:700;
+}
+.foodCard .description,
+.menuCard .description{
+    font-size:15px;
+    color:#657070;
+    margin:16px 0 0;
+    line-height:1.75;
+}
+.contactBtn{
+    display:inline-block;
+    margin-top:16px;
+    padding:14px 24px;
+    border-radius:999px;
+    background:linear-gradient(135deg, #efb32c 0%, #f3a65a 100%);
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+    transition:.25s ease;
+}
+.contactBtn:hover{
+    transform:translateY(-2px);
+}
+.smallText{
+    margin-top:12px;
+    color:#7d7d7d;
+    font-size:15px;
+    line-height:1.7;
+}
+/* Styles individual guest review cards. */
+.reviewCard{
+    position:relative;
+    padding-top:20px;
+    overflow:hidden;
+}
+.reviewAccent{
+    position:absolute;
+    top:16px;
+    right:-20px;
+    width:120px;
+    height:120px;
+    background:#F3B05F1F;
+    border-radius:50%;
+    z-index:0;
+}
+.reviewCard p{
+    position:relative;
+    z-index:1;
+}
+.reviewCard span{
+    font-weight:700;
+    color:#8b6d38;
+}
+/* Lays out the guest review submission form. */
+.reviewForm{
+    max-width:720px;
+    margin:36px auto 0;
+    padding:28px;
+    display:grid;
+    gap:16px;
+    background:linear-gradient(180deg, #ffffff 0%, #fff9f1 100%);
+    border:1px solid #f3b05f24;
+    border-radius:24px;
+    box-shadow:0 18px 42px #13232F14;
+}
+.reviewForm h3{
+    color:#214139;
+    font-size:22px;
+}
+.reviewForm label{
+    display:grid;
+    gap:7px;
+    color:#5c6369;
+    font-weight:700;
+}
+.reviewForm input,
+.reviewForm select,
+.reviewForm textarea{
+    width:100%;
+    padding:12px 14px;
+    color:#2f4f4f;
+    background:#fffdf9;
+    border:1px solid #d3d3d3;
+    border-radius:12px;
+    font:inherit;
+}
+.reviewForm textarea{
+    resize:vertical;
+}
+.reviewFormRow{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:16px;
+}
+.reviewActions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+.reviewSubmit{
+    padding:12px 22px;
+    border:0;
+    border-radius:999px;
+    font:inherit;
+    font-weight:800;
+    cursor:pointer;
+}
+.reviewSubmit{
+    color:#2f4f4f;
+    background:linear-gradient(135deg, #ffd700 0%, #f0e68c 100%);
+    box-shadow:0 10px 24px rgba(218, 165, 32, 0.2);
+}
+.reviewSubmit:hover{
+    transform:translateY(-2px);
+}
+.deleteReview{
+    position:absolute;
+    top:14px;
+    right:14px;
+    z-index:2;
+    width:28px;
+    height:28px;
+    color:#8b6d38;
+    background:#ffffff;
+    border:1px solid #f3b05f;
+    border-radius:50%;
+    font-size:20px;
+    line-height:1;
+    cursor:pointer;
+}
+.deleteReview:hover{
+    color:#ffffff;
+    background:#d16d53;
+    border-color:#d16d53;
+}
+.menuCard p,
+.aboutCard p,
+.contactCard p{
+    font-size:17px;
+    color:#5e656b;
+    line-height:1.75;
+}
+.contactCard{
+    min-height:180px;
+}
+.sectionSubtitle{
+    max-width:720px;
+    color:#5c6369;
+    font-size:18px;
+    margin-bottom:40px;
+    line-height:1.7;
+}
+.popular{
+    width:100%;
+    padding:80px 80px 100px;
+}
+.popular h2{
+    font-size:38px;
+    margin-bottom:18px;
+}
+.popular p{
+    margin-bottom:40px;
+}
+/* Displays featured foods in a responsive grid. */
+.foodContainer{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+    gap:25px;
+}
+.foodCard{
+    width:100%;
+    background:#ffffff;
+    border-radius:28px;
+    padding:30px 24px;
+    text-align:center;
+    box-shadow:0 24px 50px #13232F14;
+    transition:.35s ease;
+    border:1px solid #F3B05F24;
+}
+.foodCard:hover{
+    transform:translateY(-10px);
+    box-shadow:0 36px 70px #13232F24;
+}
+.foodCard img{
+    width:180px;
+    border-radius:20px;
+    margin-bottom:15px;
+}
+.foodCard h3{
+    margin-bottom:10px;
+    color:#273531;
+}
+.foodCard p{
+    font-size:20px;
+    color:#F4B942;
+    font-weight:bold;
+}
+/* Adjusts multi-column content for tablet screens. */
+@media (max-width:1024px) {
+    header{
+        padding:0 30px;
+    }
+    .home{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        padding:30px 30px;
+    }
+    .homeText,
+    .homeImage{
+        width:100%;
+    }
+    .homeText{
+        margin-bottom:30px;
+    }
+    .homeText h1{
+        font-size:48px;
+        line-height:58px;
+    }
+    .homeImageGlow{
+        display:none;
+    }
+    .foodContainer{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+    }
+}
+/* Stacks layouts and controls for mobile screens. */
+@media (max-width:720px) {
+    header{
+        flex-direction:column;
+        height:auto;
+        padding:20px 18px;
+        gap:15px;
+    }
+    nav{
+        gap:18px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+    .home{
+        padding:24px 20px;
+    }
+    .homeText h1{
+        font-size:36px;
+        line-height:44px;
+    }
+    .homeButtons{
+        justify-content:center;
+    }
+    .reviewFormRow{
+        grid-template-columns:1fr;
+    }
+    .foodContainer{
+        grid-template-columns:1fr;
+    }
+}
+
+.deleteBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #888;
+    font-size: 1.2rem;
+    cursor: pointer;
+}

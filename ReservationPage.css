@@ -1,0 +1,345 @@
+/* Styles the Palm Breeze Cafe table reservation page. */
+/* Defines reusable page colors and dimensions. */
+:root {
+  --primary-color: #daa520;
+  --secondary-color: #457575;
+  --background-color: #fff5ee;
+  --card-bg: #ffffff;
+  --text-color: #2f4f4f;
+  --border-radius: 20px;
+}
+
+/* Resets default sizing, spacing, and typography. */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+/* Sets the page background and default text styling. */
+body {
+  background: linear-gradient(180deg, #fff5ee 0%, #ffe4b5 50%, #ffdead 100%);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styles the fixed cafe header and home navigation. */
+.pageHeader {
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 60px;
+  gap: 20px;
+  background: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+  border-bottom: 1px solid #f7e3c0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin-bottom: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #457575;
+  flex-wrap: wrap;
+}
+
+.logo span {
+  display: inline-block;
+}
+
+.logo img {
+  height: 58px;
+  width: auto;
+  display: block;
+}
+
+.homeBtn {
+  text-decoration: none;
+  color: white;
+  background: #F4B942;
+  padding: 12px 25px;
+  border-radius: 30px;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeBtn:hover {
+  background: #E8A317;
+  transform: translateY(-2px);
+}
+
+/* Centers the reservation content within the page. */
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 0.75rem;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pageTitle {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.pageTitle h1 {
+  color: var(--secondary-color);
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+header p {
+  color: #b8860b;
+  font-size: 1.05rem;
+}
+
+/* Arranges the reservation interface content. */
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
+  justify-items: center;
+}
+
+/* Keeps the reservation layout readable on smaller screens. */
+@media (max-width: 768px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Positions the reservation drawer off screen until activated. */
+.cart{
+    position: fixed;
+    top:0;
+    right: -100%;
+    width: 360px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    padding: 65px 20px 40px;
+    z-index: 11000;
+    overflow: auto;
+    transition: 0.5s;
+}
+.cart.active{
+    right: 0;
+}
+.cartTitle{
+    text-align: center;
+    font-size: 30px;
+}
+.cartBox{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+#cart-icon{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 0.55rem;
+    min-width: 148px;
+    height: 52px;
+    padding: 0 0.85rem 0 1rem;
+    color: #214139;
+    background: #ffffff;
+    border: 1px solid #f3b05f;
+    border-right: 0;
+    border-radius: 28px 0 0 28px;
+    box-shadow: 0 6px 16px rgba(0,0,0,.15);
+    transition: right .5s ease, background .2s ease, box-shadow .2s ease;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    position:fixed;
+    top:50%;
+    right:0;
+    transform: translateY(-50%);
+    z-index:11001;
+}
+#cart-icon:hover{
+    background:#E8A317;
+}
+
+.cartToggleArrow {
+    font-size: 1.8rem;
+    line-height: 1;
+    transition: transform .2s ease;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 1.25rem 1.3rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 24px 60px rgba(19, 35, 47, 0.12);
+  border: 1px solid #f3b05f24;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  right: -20px;
+  width: 120px;
+  height: 120px;
+  background: rgba(243, 176, 95, 0.12);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card form {
+  width: 100%;
+}
+
+.card h2 {
+  margin-bottom: 0.9rem;
+  color: #214139;
+  border-bottom: 2px solid #f3b05f24;
+  padding-bottom: 0.45rem;
+  font-size: 1.2rem;
+}
+
+.formGroup {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroupRow {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.formGroupRow .formGroup {
+  flex: 1;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+  color: #5c6369;
+}
+
+input, select {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #d3d3d3;
+  border-radius: 999px;
+  font-size: 1rem;
+  background: #fffdf9;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.18);
+}
+
+.btn {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: linear-gradient(135deg, #ffd700 0%, #f0e68c 100%);
+  color: #2f4f4f;
+  border: none;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 24px rgba(218, 165, 32, 0.2);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.reservationList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.reservationItem {
+  background: linear-gradient(180deg, #fff9f1 0%, #ffffff 100%);
+  padding: 1rem;
+  border-left: 4px solid var(--primary-color);
+  border-radius: 14px;
+  position: relative;
+}
+
+.reservationItem h3 {
+  font-size: 1.1rem;
+  color: #214139;
+}
+
+.reservationItem p {
+  font-size: 0.9rem;
+  color: #5c6369;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  color: var(--primary-color);
+}
+
+.emptyMsg {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+}
+
+#cartClose {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: #2f4f4f;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}

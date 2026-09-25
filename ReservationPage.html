@@ -1,0 +1,93 @@
+<!-- Provides the Palm Breeze Cafe table reservation page. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant Reservation System</title>
+  <link rel="stylesheet" href="ReservationPage.css" />
+</head>
+<body>
+  <!-- Displays cafe branding and home page navigation. -->
+  <header class="pageHeader">
+    <div class="logo">
+      <img src="images/LogoPBC.png" alt="Palm Breeze Café Logo">
+      <span>Palm Breeze Café</span>
+    </div>
+    <a href="PalmBreezeCaféHomePage.html" class="homeBtn">← Home</a>
+  </header>
+
+  <!-- Contains the complete reservation experience. -->
+  <div class="container">
+    <header class="pageTitle">
+      <h1>Reserve Table</h1>
+      <p>Book your table with us in seconds!</p>
+    </header>
+
+    <!-- Groups the booking form and reservation drawer. -->
+    <div class="contentGrid">
+      <!-- Collects booking details from the guest. -->
+      <section class="card">
+        <h2>Make a Reservation</h2>
+        <form id="reservationForm">
+          <div class="formGroup">
+            <label for="guestName">Full Name</label>
+            <input type="text" id="guestName" placeholder="John Doe" required />
+          </div>
+
+          <div class="formGroup">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="john@example.com" required />
+          </div>
+
+          <!-- Keeps guest count and date fields together. -->
+          <div class="formGroupRow">
+            <div class="formGroup">
+              <label for="partySize">Guests</label>
+              <select id="partySize" required>
+                <option value="1">1 Person</option>
+                <option value="2" selected>2 People</option>
+                <option value="3">3 People</option>
+                <option value="4">4 People</option>
+                <option value="5">5+ People</option>
+              </select>
+            </div>
+
+            <div class="formGroup">
+              <label for="resDate">Date</label>
+              <input type="date" id="resDate" required />
+            </div>
+          </div>
+
+          <div class="formGroup">
+            <label for="resTime">Time</label>
+            <input type="time" id="resTime" required />
+          </div>
+
+          <button type="submit" class="btn">Confirm Booking</button>
+        </form>
+      </section>
+
+      <button id="cart-icon" type="button" aria-controls="reservationCart" aria-expanded="false">
+        <span class="cartToggleLabel">Reservations</span>
+        <span class="cartToggleArrow" aria-hidden="true">&#8249;</span>
+      </button>
+
+    <!-- Shows upcoming reservations in a slide-out drawer. -->
+    <div class="cart" id="reservationCart">
+      <button id="cartClose" class="close-button" style="display: none;">X</button>
+      <div class="cartContent">
+      <section class="card">
+        <h2>Upcoming Reservations</h2>
+        <div id="reservationList" class="reservationList">
+          <p class="emptyMsg">No reservations found.</p>
+        </div>
+      </section>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
